@@ -26,8 +26,7 @@ public class MealsUtil {
     );
 
     public static final List<User> USERS = Arrays.asList(
-            new User(1, "User1", "user1@mail.ru", "pwd1", Role.ROLE_USER),
-            new User(2, "User2", "user2@mail.ru", "pwd2", Role.ROLE_USER),
+            new User(1, "User", "user@mail.ru", "pwd", Role.ROLE_USER),
             new User(2, "Admin", "admin@mail.ru", "123", Role.ROLE_ADMIN)
     );
 
