@@ -12,11 +12,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class InMemoryUserRepositoryImpl implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepositoryImpl.class);
     private Map<Integer, User> repository = new ConcurrentHashMap<>();
+    private AtomicInteger counter = new AtomicInteger(0);
 
     {
         MealsUtil.USERS.forEach(this::save);
@@ -31,8 +33,12 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
     @Override
     public User save(User user) {
         log.info("save {}", user);
-        repository.put(user.getId(), user);
-        return user;
+        if (user.getId() == null) {
+            user.setId(counter.incrementAndGet());
+            repository.put(user.getId(), user);
+            return user;
+        }
+        return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override

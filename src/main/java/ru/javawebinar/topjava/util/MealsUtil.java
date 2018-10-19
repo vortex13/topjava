@@ -26,8 +26,8 @@ public class MealsUtil {
     );
 
     public static final List<User> USERS = Arrays.asList(
-            new User(1, "User", "user@mail.ru", "pwd", Role.ROLE_USER),
-            new User(2, "Admin", "admin@mail.ru", "123", Role.ROLE_ADMIN)
+            new User(null, "User", "user@mail.ru", "pwd", Role.ROLE_USER),
+            new User(null, "Admin", "admin@mail.ru", "123", Role.ROLE_ADMIN)
     );
 
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
